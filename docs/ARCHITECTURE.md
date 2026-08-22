@@ -13,6 +13,8 @@ La aplicación se organiza como un producto público de consulta individual de C
 | `drizzle/` | Esquema heredado de plantilla; no participa en la consulta pública. | Sí |
 | `.manus*`, `.vercel/`, `dist/`, `node_modules/`, `.env*` | Estado local, artefactos o secretos. | No |
 
+El repositorio [CFDI Fixture Lab](https://github.com/jccontrerasg08-cpu/cfdi-fixture-lab) permanece como referencia educativa de fixtures sintéticos y reglas locales. No forma parte de la compilación, las dependencias, GitHub Actions ni el despliegue Vercel de este producto.
+
 ## Flujo público
 
 1. La interfaz valida datos capturados o los extrae de un XML que permanece en memoria del navegador.

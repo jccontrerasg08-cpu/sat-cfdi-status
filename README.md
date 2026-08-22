@@ -2,6 +2,8 @@
 
 > Herramienta pública para consultar **un CFDI a la vez** en el servicio ConsultaCFDI del SAT. No pide cuenta ni recibe XML en el servidor; el archivo se lee exclusivamente en el navegador.
 
+> **Repositorio canónico de producto.** Este es el único repositorio destinado a GitHub, Vercel y uso público. El material de fixtures y reglas didácticas permanece separado en [CFDI Fixture Lab](https://github.com/jccontrerasg08-cpu/cfdi-fixture-lab); no se ejecuta ni se despliega junto con esta aplicación.
+
 ## Desarrollo
 
 | Comando | Propósito |

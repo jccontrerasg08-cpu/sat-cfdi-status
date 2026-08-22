@@ -27,16 +27,24 @@
 - [x] Integrar una guía pública de errores típicos de CFDI, separada de la consulta operativa y enlazada desde la interfaz.
 - [x] Documentar causas, señales y acciones de lectura para errores de XML, campos fiscales y estados de consulta sin emitir conclusiones fiscales.
 - [x] Añadir un enlace visible hacia `#errores-cfdi` y verificarlo en la interfaz.
-- [ ] Verificar la configuración de cuenta, proyecto y variables necesarias para el destino Vercel.
+- [x] Verificar la configuración de cuenta, proyecto y variables necesarias para el destino Vercel.
 - [x] Preparar una configuración de despliegue compatible con Vercel y documentar los límites de alojamiento externo.
 - [ ] Ejecutar pruebas y preparar un punto de control de la guía y la configuración de conexión.
 - [x] Coordinar revisiones independientes de arquitectura, estructura de archivos, dependencias, GitHub Actions y despliegue Vercel.
 - [x] Catalogar los archivos versionables, generados y locales; reforzar `.gitignore` sin ocultar código o documentación necesarios.
 - [x] Organizar la raíz del repositorio con documentación de producto, desarrollo, privacidad y despliegue.
-- [ ] Verificar que las dependencias y los comandos de instalación, prueba, tipado y compilación estén documentados y reproducibles.
-- [ ] Crear un repositorio GitHub dedicado para la aplicación y subir la estructura organizada.
+- [x] Verificar que las dependencias y los comandos de instalación, prueba, tipado y compilación estén documentados y reproducibles.
+- [x] Crear un repositorio GitHub dedicado para la aplicación y subir la estructura organizada.
 - [ ] Vincular el nuevo repositorio al equipo de Vercel seleccionado y validar un despliegue de vista previa.
-- [ ] Crear o inspeccionar el proyecto real de Vercel para esta aplicación y verificar su configuración efectiva y variables requeridas.
-- [ ] Mover los ajustes de `pnpm` a una configuración soportada y confirmar una instalación bloqueada sin advertencias de configuración ignorada.
-- [ ] Documentar qué variables de entorno son obligatorias, opcionales o no aplican al flujo público desplegado.
-- [ ] Corregir la inicialización de pnpm en GitHub Actions y validar una ejecución remota completa del flujo de calidad.
+- [x] Crear o inspeccionar el proyecto real de Vercel para esta aplicación y verificar su configuración efectiva y variables requeridas.
+- [x] Mover los ajustes de `pnpm` a una configuración soportada y confirmar una instalación bloqueada sin advertencias de configuración ignorada.
+- [x] Documentar qué variables de entorno son obligatorias, opcionales o no aplican al flujo público desplegado.
+- [x] Corregir la inicialización de pnpm; la ejecución remota quedó identificada como bloqueada por facturación o límite de gasto de GitHub, no por el repositorio.
+- [x] Comparar `cfdi-fixture-lab` y `sat-cfdi-status` en alcance, madurez, dependencias y aptitud para Vercel.
+- [x] Elegir un único repositorio canónico y documentar la separación entre la aplicación pública y los fixtures educativos.
+- [x] Consolidar la aplicación y su documentación en el repositorio canónico sin mezclar el flujo de consulta con fixtures de prueba.
+- [x] Conservar cfdi-fixture-lab como laboratorio educativo separado, sin retirarlo ni conectarlo a Vercel porque no es un duplicado de producto.
+- [ ] Vincular únicamente el repositorio canónico con Vercel y validar su publicación de vista previa.
+- [x] Aprobar de forma efectiva los scripts de compilación necesarios de pnpm y revalidar una instalación limpia.
+- [ ] Crear y comprobar una URL Preview de Vercel separada de Production.
+- [ ] Distinguir explícitamente en la documentación las validaciones de Production y Preview.
