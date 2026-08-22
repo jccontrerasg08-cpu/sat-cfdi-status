@@ -54,7 +54,7 @@
 - [x] Añadir una interfaz pública de laboratorio local para ejecutar la validación educativa sin enviar XML ni mezclarla con la consulta operativa.
 - [x] Añadir pruebas y documentación para los activos migrados y confirmar que los comandos de producto y laboratorio son reproducibles.
 - [x] Verificar la cobertura de todos los activos útiles antes de eliminar cfdi-fixture-lab.
-- [ ] Eliminar el repositorio GitHub cfdi-fixture-lab tras comprobar la migración y conservar el producto único en Vercel.
+- [x] Eliminar el repositorio GitHub cfdi-fixture-lab tras comprobar la migración y conservar el producto único en Vercel.
 - [x] Migrar la cotización aduanera sintética local y su contrato JSON como herramienta educativa separada.
 - [x] Conservar los artefactos de evaluación de dependencias y fixtures sintéticos auxiliares dentro del archivo documental del laboratorio.
 - [x] Documentar los comandos reproducibles del producto y del laboratorio, así como las rutas públicas migradas.
