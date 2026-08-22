@@ -39,3 +39,4 @@
 - [ ] Crear o inspeccionar el proyecto real de Vercel para esta aplicación y verificar su configuración efectiva y variables requeridas.
 - [ ] Mover los ajustes de `pnpm` a una configuración soportada y confirmar una instalación bloqueada sin advertencias de configuración ignorada.
 - [ ] Documentar qué variables de entorno son obligatorias, opcionales o no aplican al flujo público desplegado.
+- [ ] Corregir la inicialización de pnpm en GitHub Actions y validar una ejecución remota completa del flujo de calidad.
