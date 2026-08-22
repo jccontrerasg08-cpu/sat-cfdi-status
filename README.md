@@ -1,10 +1,10 @@
 # Consulta CFDI SAT
 
-> Herramienta pública para consultar **un CFDI a la vez** en el servicio ConsultaCFDI del SAT. No pide cuenta, no recibe XML y no guarda RFC, UUID, importe ni sello.
+> Herramienta pública para consultar **un CFDI a la vez** en el servicio ConsultaCFDI del SAT. No pide cuenta ni recibe XML en el servidor; el archivo se lee exclusivamente en el navegador.
 
 ## Uso
 
-Abre la página pública, captura los cinco datos del comprobante y presiona **Consultar ante el SAT**. La aplicación valida los campos primero en el navegador y después en el servidor. Sólo si los datos tienen formato válido, el servidor envía una solicitud SOAP única al SAT.
+Abre la página pública y captura los cinco datos del comprobante, o selecciona un XML CFDI para extraerlos localmente. La aplicación valida los campos primero en el navegador y después en el servidor. Sólo si los datos tienen formato válido, el servidor envía una solicitud SOAP única al SAT.
 
 | Dato | Clave en la expresión | Formato esperado |
 |---|---|---|
@@ -22,9 +22,15 @@ El SAT expone un endpoint HTTPS público para la operación `Consulta`. La aplic
 
 El servicio devuelve un `Acuse`. La interfaz presenta sus campos sin reinterpretarlos: `CodigoEstatus`, `Estado`, `EsCancelable`, `EstatusCancelacion` y `ValidacionEFOS`. Los errores de formato se detienen antes de abrir conexión; los errores de red, HTTP y SOAP se comunican sin reflejar los datos introducidos.
 
+## XML, historial y vista previa
+
+El XML se abre mediante APIs nativas del navegador para leer RFC, total, UUID y los ocho últimos caracteres del sello. El archivo no se transmite ni se almacena. Desde los datos extraídos, la página produce una vista previa HTML semántica que puede imprimirse o guardarse como PDF con el diálogo estándar del navegador.
+
+Después de un Acuse exitoso, la aplicación puede conservar hasta ocho consultas recientes en `localStorage` del navegador actual. Ese historial contiene datos de consulta y respuesta; no incluye el archivo XML y puede eliminarse con un solo control desde la interfaz.
+
 ## Límites
 
-La herramienta realiza **una consulta individual por solicitud**. No carga XML, no conserva consultas, no habilita lotes, monitoreo, cancelación, timbrado, firma ni asesoría fiscal. El Acuse es la respuesta del SAT y no constituye por sí mismo una conclusión fiscal, legal o de cumplimiento.
+La herramienta realiza **una consulta individual por solicitud**. No habilita lotes, monitoreo, cancelación, timbrado, firma ni asesoría fiscal. El Acuse es la respuesta del SAT y no constituye por sí mismo una conclusión fiscal, legal o de cumplimiento.
 
 ## Referencia oficial
 

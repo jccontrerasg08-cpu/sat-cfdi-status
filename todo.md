@@ -14,4 +14,13 @@
 - [x] Cubrir con Vitest un HTTP 500 con SOAP Fault y la validación del procedimiento público.
 - [x] Añadir una prueba de integración de `satStatus.query` que exponga errores de validación por campo desde el procedimiento tRPC público.
 - [x] Verificar la interfaz en escritorio y móvil y ejecutar las pruebas y tipado.
-- [ ] Crear un punto de control publicable después de la verificación final exitosa.
+- [x] Crear un punto de control publicable después de la verificación final exitosa.
+- [x] Añadir una carga local de XML CFDI que extraiga RFC, total, UUID y los últimos ocho caracteres del sello sin enviar el archivo al servidor.
+- [x] Validar y manejar XML malformado, sin TimbreFiscalDigital o con campos faltantes mediante mensajes claros.
+- [x] Guardar un historial acotado de consultas recientes exclusivamente en localStorage, con recuperación, reutilización y eliminación local.
+- [x] Incorporar una vista previa HTML semántica de la factura extraída, adaptable e imprimible como PDF desde el navegador.
+- [x] Mejorar los estados de carga y convertir el Acuse en un resultado visual jerarquizado, claro y accesible.
+- [x] Añadir pruebas para la extracción XML y el formato de datos del CFDI.
+- [x] Probar `extractCfdiXml` con un XML CFDI real y con XML malformado mediante un DOMParser simulado.
+- [x] Probar los datos estructurados que alimentan la vista previa HTML imprimible.
+- [x] Verificar escritorio y móvil, pruebas, impresión y la ausencia de persistencia en el servidor antes de crear un nuevo punto de control.
