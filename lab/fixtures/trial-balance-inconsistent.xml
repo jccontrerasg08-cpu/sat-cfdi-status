@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lab:FixtureTrialBalance xmlns:lab="https://example.invalid/fixture-ledger">
+  <lab:Account id="fixture-account-100" opening="100.00" debits="50.00" credits="25.00" closing="124.99" />
+</lab:FixtureTrialBalance>

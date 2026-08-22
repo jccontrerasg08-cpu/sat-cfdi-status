@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<trade:FixtureTradeShipment xmlns:trade="https://example.invalid/fixture-trade" declared_total="35.00">
+  <trade:Line product_id="fixture-product-001" origin="Origin-X" destination="Destination-Y" quantity="2" unit_value="10.00" />
+  <trade:Line product_id="fixture-product-002" origin="Origin-X" destination="Destination-Y" quantity="3" unit_value="5.00" />
+</trade:FixtureTradeShipment>

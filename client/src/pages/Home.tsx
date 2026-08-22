@@ -184,7 +184,7 @@ export default function Home() {
       <div className="mesh mesh-one" aria-hidden="true" /><div className="mesh mesh-two" aria-hidden="true" />
       <header className="screen-only relative z-10 mx-auto flex w-full max-w-[1340px] items-center justify-between px-5 py-6 sm:px-8 lg:px-12">
         <a href="#consulta" className="group inline-flex items-center gap-3 font-[var(--font-display)] text-xl tracking-tight sm:text-2xl"><span className="grid h-9 w-9 place-items-center rounded-full bg-[#171611] text-[#f5f1e8] transition-transform duration-200 group-hover:-rotate-6"><FileKey2 size={18} strokeWidth={1.8} /></span>consulta<span className="text-[#b76421]">.cfdi</span></a>
-        <nav className="hidden items-center gap-5 text-sm font-medium text-[#595649] sm:flex" aria-label="Secciones de la página"><a href="#errores-cfdi" className="transition-colors hover:text-[#b76421]">Errores frecuentes</a><a href="#como-funciona" className="inline-flex items-center gap-2 transition-colors hover:text-[#171611]">Cómo funciona <ArrowDown size={15} /></a></nav>
+        <nav className="hidden items-center gap-5 text-sm font-medium text-[#595649] sm:flex" aria-label="Secciones de la página"><a href="/laboratorio" className="transition-colors hover:text-[#b76421]">Laboratorio</a><a href="#errores-cfdi" className="transition-colors hover:text-[#b76421]">Errores frecuentes</a><a href="#como-funciona" className="inline-flex items-center gap-2 transition-colors hover:text-[#171611]">Cómo funciona <ArrowDown size={15} /></a></nav>
       </header>
 
       <main className="relative z-10 mx-auto w-full max-w-[1340px] px-5 pb-20 sm:px-8 lg:px-12">

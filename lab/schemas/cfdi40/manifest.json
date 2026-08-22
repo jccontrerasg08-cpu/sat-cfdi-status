@@ -1,0 +1,15 @@
+{
+  "profile": "cfdi_4_0_xsd",
+  "retrieved_at": "2026-08-18",
+  "source": "http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd",
+  "source_hashes": {
+    "cfdv40.xsd": "2489b5b535f5cbc6a6c2db6132620de1833f85372512d01deea62880e700e276"
+  },
+  "files": {
+    "cfdv40.xsd": "ed0d146725529d456be4ee2cb847ddcdb5d8d77c5ed73d96203bd10fb035c5e7",
+    "catCFDI.xsd": "6c58936cb77576f839a4d7915953ceaf252b9eb9319f9458fe5bb67ae2bb0bb1",
+    "tdCFDI.xsd": "b3b81fe4017b95d5477f23a32f47e8b0571683cfddfff1330508c75e02b504cd"
+  },
+  "local_rewrite": "The two remote schemaLocation imports in cfdv40.xsd point to the bundled local dependency filenames so validation cannot retrieve schemas over the network.",
+  "guarantee": "Offline XSD structural validation only; this profile does not validate signatures, catalog values, business rules, PAC certification, or SAT acceptance."
+}

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lab:FixtureJournal xmlns:lab="https://example.invalid/fixture-ledger">
+  <lab:Entry id="fixture-entry-001" date="2024-01-15">
+    <lab:Line account="fixture-account-100" debit="100.00" credit="0.00" />
+    <lab:Line account="fixture-account-200" debit="0.00" credit="99.99" />
+  </lab:Entry>
+</lab:FixtureJournal>

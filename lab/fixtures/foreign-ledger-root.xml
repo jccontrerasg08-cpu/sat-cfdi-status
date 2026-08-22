@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<foreign:FixtureJournal xmlns:foreign="https://example.invalid/foreign-ledger">
+  <foreign:Entry id="fixture-entry-001">
+    <foreign:Line account="fixture-account-100" debit="100.00" credit="100.00" />
+  </foreign:Entry>
+</foreign:FixtureJournal>

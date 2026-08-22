@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<foreign:FixtureTradeShipment xmlns:foreign="https://example.invalid/foreign-trade" declared_total="10.00">
+  <foreign:Line product_id="fixture-product-001" origin="Origin-X" destination="Destination-Y" quantity="1" unit_value="10.00" />
+</foreign:FixtureTradeShipment>

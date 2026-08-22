@@ -48,3 +48,14 @@
 - [x] Aprobar de forma efectiva los scripts de compilación necesarios de pnpm y revalidar una instalación limpia.
 - [x] Crear y comprobar una URL Preview de Vercel separada de Production.
 - [x] Distinguir explícitamente en la documentación las validaciones de Production y Preview.
+- [x] Inventariar los módulos, fixtures, XSD, documentos, pruebas y comandos útiles de cfdi-fixture-lab.
+- [x] Definir la equivalencia mínima entre el laboratorio Python y el producto web sin introducir una segunda implementación de consulta SAT.
+- [x] Incorporar al repositorio canónico los fixtures, XSD, guías y validaciones educativas necesarios bajo una estructura aislada del producto web.
+- [x] Añadir una interfaz pública de laboratorio local para ejecutar la validación educativa sin enviar XML ni mezclarla con la consulta operativa.
+- [x] Añadir pruebas y documentación para los activos migrados y confirmar que los comandos de producto y laboratorio son reproducibles.
+- [x] Verificar la cobertura de todos los activos útiles antes de eliminar cfdi-fixture-lab.
+- [ ] Eliminar el repositorio GitHub cfdi-fixture-lab tras comprobar la migración y conservar el producto único en Vercel.
+- [x] Migrar la cotización aduanera sintética local y su contrato JSON como herramienta educativa separada.
+- [x] Conservar los artefactos de evaluación de dependencias y fixtures sintéticos auxiliares dentro del archivo documental del laboratorio.
+- [x] Documentar los comandos reproducibles del producto y del laboratorio, así como las rutas públicas migradas.
+- [x] Documentar la paridad cubierta por lab.test.ts, lab.xsd.test.ts, los fixtures y el perfil XSD offline.

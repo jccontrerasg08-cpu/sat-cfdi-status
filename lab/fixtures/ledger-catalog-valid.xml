@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lab:FixtureLedgerCatalog xmlns:lab="https://example.invalid/fixture-ledger">
+  <lab:Account id="fixture-account-100" name="Caja de laboratorio" />
+  <lab:Account id="fixture-account-200" name="Ingresos de laboratorio" />
+</lab:FixtureLedgerCatalog>
