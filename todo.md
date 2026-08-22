@@ -74,3 +74,15 @@
 - [x] Afirmar los estados visibles de éxito para fixture válido y error XSD para fixture inválido dentro de la prueba de integración del editor.
 - [x] Completar una reauditoría final del copy visible y documentar que las variantes «solo/sólo» restantes son usos ortográficamente válidos o corregirlas por consistencia.
 - [x] Guardar una nota editorial versionada con el resultado de la reauditoría final de copy.
+- [ ] Coordinar auditorías independientes de responsividad, funcionalidad, rendimiento y seguridad del producto publicado.
+- [ ] Reproducir y priorizar los hallazgos confirmados por impacto, sin tratar observaciones especulativas como vulnerabilidades.
+- [ ] Corregir los problemas verificables de seguridad, compatibilidad o experiencia detectados en la auditoría.
+- [ ] Verificar escritorio, móvil, tableta, pruebas, compilación y controles de seguridad antes de guardar el punto de control de auditoría.
+- [ ] Restablecer un indicador de foco visible para el editor XML y comprobar la navegación por teclado.
+- [ ] Añadir cabeceras de seguridad compatibles con Vercel y verificar que no bloqueen la aplicación ni WebAssembly.
+- [ ] Separar los cálculos del cotizador del módulo de XSD para evitar cargar esquemas en esa ruta.
+- [ ] Documentar de forma más explícita que el historial local guarda identificadores de consulta sólo en el navegador y puede borrarse.
+- [ ] Reproducir la respuesta SOAP contra casos de namespace, total y timeout antes de cambiar el contrato SAT sin evidencia concluyente.
+- [ ] Cargar el Laboratorio y el cotizador de forma diferida para que los esquemas XSD no aumenten la carga inicial de la consulta operativa.
+- [ ] Adaptar la altura del editor XML a la ventana móvil para acercar sus controles de validación sin reducir el área de trabajo en escritorio.
+- [ ] Publicar las correcciones en el repositorio canónico y verificar las cabeceras de seguridad en la URL de Vercel.

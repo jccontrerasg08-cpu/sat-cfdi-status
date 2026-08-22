@@ -65,7 +65,7 @@ function validate(values: FormValues) {
 }
 
 function Notice({ children, tone = "neutral" }: { children: ReactNode; tone?: "neutral" | "error" | "success" }) {
-  return <div className={`notice ${tone === "error" ? "notice-error" : tone === "success" ? "notice-success" : ""}`}>{children}</div>;
+  return <div role={tone === "error" ? "alert" : "status"} className={`notice ${tone === "error" ? "notice-error" : tone === "success" ? "notice-success" : ""}`}>{children}</div>;
 }
 
 export default function Home() {

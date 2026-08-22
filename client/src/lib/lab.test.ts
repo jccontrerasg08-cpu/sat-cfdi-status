@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
-import { normalizeXml, PUBLIC_CFDI_EXAMPLE, syntheticCustomsQuote, validateLabElements } from "./lab";
+import { normalizeXml, PUBLIC_CFDI_EXAMPLE, validateLabElements } from "./lab";
+import { syntheticCustomsQuote } from "./customsQuote";
 
 const node = (localName: string, attributes: Record<string, string> = {}, children: ReturnType<typeof node>[] = []) => ({ localName, tagName: localName, getAttribute: (key: string) => attributes[key] ?? null, children });
 

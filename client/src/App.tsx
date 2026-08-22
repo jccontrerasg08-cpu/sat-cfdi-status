@@ -1,16 +1,19 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
+import { lazy, Suspense } from "react";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
-import Lab from "./pages/Lab";
-import CustomsQuote from "./pages/CustomsQuote";
+
+const Lab = lazy(() => import("./pages/Lab"));
+const CustomsQuote = lazy(() => import("./pages/CustomsQuote"));
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
+    <Suspense fallback={<main className="grid min-h-screen place-items-center bg-[#f5f1e8] p-6 text-center text-sm font-semibold text-[#6f685c]">Cargando módulo local…</main>}>
     <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/laboratorio"} component={Lab} />
@@ -19,6 +22,7 @@ function Router() {
       {/* Final fallback route */}
       <Route component={NotFound} />
     </Switch>
+    </Suspense>
   );
 }
 
