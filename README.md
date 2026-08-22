@@ -2,6 +2,21 @@
 
 > Herramienta pública para consultar **un CFDI a la vez** en el servicio ConsultaCFDI del SAT. No pide cuenta ni recibe XML en el servidor; el archivo se lee exclusivamente en el navegador.
 
+## Desarrollo
+
+| Comando | Propósito |
+|---|---|
+| `pnpm dev` | Inicia la aplicación local. |
+| `pnpm check` | Comprueba los tipos de TypeScript. |
+| `pnpm test` | Ejecuta los contratos del SAT y la lectura local de XML. |
+| `pnpm build` | Genera el cliente Vite y el servidor Node. |
+
+La organización del código se explica en [Arquitectura](docs/ARCHITECTURE.md). Para GitHub Actions y Vercel, consulta [Despliegue](docs/DEPLOYMENT.md).
+
+## Repositorio
+
+El repositorio incluye [Contribuir](CONTRIBUTING.md), una licencia [MIT](LICENSE), una política de archivos locales en `.gitignore` y un flujo de validación en `.github/workflows/ci.yml`. El directorio `docs/` concentra la arquitectura y el despliegue para que el código de producto permanezca en `client/`, `server/` y `api/`.
+
 ## Uso
 
 Abre la página pública y captura los cinco datos del comprobante, o selecciona un XML CFDI para extraerlos localmente. La aplicación valida los campos primero en el navegador y después en el servidor. Sólo si los datos tienen formato válido, el servidor envía una solicitud SOAP única al SAT.
@@ -27,6 +42,10 @@ El servicio devuelve un `Acuse`. La interfaz presenta sus campos sin reinterpret
 El XML se abre mediante APIs nativas del navegador para leer RFC, total, UUID y los ocho últimos caracteres del sello. El archivo no se transmite ni se almacena. Desde los datos extraídos, la página produce una vista previa HTML semántica que puede imprimirse o guardarse como PDF con el diálogo estándar del navegador.
 
 Después de un Acuse exitoso, la aplicación puede conservar hasta ocho consultas recientes en `localStorage` del navegador actual. Ese historial contiene datos de consulta y respuesta; no incluye el archivo XML y puede eliminarse con un solo control desde la interfaz.
+
+## Errores típicos de CFDI
+
+La interfaz incluye una guía de lectura para los casos más frecuentes: XML que no puede interpretarse, ausencia de `TimbreFiscalDigital` o UUID, RFC/total con formato inválido, falta del atributo `Sello` y fallos temporales de red, HTTP o SOAP. Cada caso diferencia la señal observada de una acción de lectura prudente. Esta guía no certifica la validez fiscal del comprobante ni reemplaza una revisión profesional.
 
 ## Límites
 

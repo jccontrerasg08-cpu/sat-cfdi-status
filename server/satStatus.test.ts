@@ -1,7 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { appRouter } from "./routers";
 import { buildPrintedExpression, buildSoapBody, querySatStatus, runSatStatus, satStatusInput } from "./satStatus";
-import type { TrpcContext } from "./_core/context";
 
 const validInput = {
   issuerRfc: "AAA010101AAA",
@@ -34,7 +33,7 @@ describe("ConsultaCFDI SAT", () => {
   it("expone errores por campo desde el procedimiento tRPC público", async () => {
     const fetchMock = vi.fn();
     vi.stubGlobal("fetch", fetchMock);
-    const caller = appRouter.createCaller({ user: null, req: {} as TrpcContext["req"], res: {} as TrpcContext["res"] });
+    const caller = appRouter.createCaller({ req: {}, res: {} } as Parameters<typeof appRouter.createCaller>[0]);
 
     await expect(caller.satStatus.query({ ...validInput, sealLast8: "corto" })).resolves.toMatchObject({
       ok: false,

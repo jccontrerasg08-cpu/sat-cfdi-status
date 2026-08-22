@@ -109,6 +109,11 @@ temp/
 # Webdev artifacts (checkpoint zips, migrations, etc.)
 .webdev/
 
+# Local agent and preview state
+.manus/
+.manus-logs/
+.project-config.json
+.vercel/
+
 # Manus version file (auto-generated, not part of source)
 client/public/__manus__/version.json
-.project-config.json

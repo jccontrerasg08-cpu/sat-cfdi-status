@@ -24,3 +24,18 @@
 - [x] Probar `extractCfdiXml` con un XML CFDI real y con XML malformado mediante un DOMParser simulado.
 - [x] Probar los datos estructurados que alimentan la vista previa HTML imprimible.
 - [x] Verificar escritorio y móvil, pruebas, impresión y la ausencia de persistencia en el servidor antes de crear un nuevo punto de control.
+- [x] Integrar una guía pública de errores típicos de CFDI, separada de la consulta operativa y enlazada desde la interfaz.
+- [x] Documentar causas, señales y acciones de lectura para errores de XML, campos fiscales y estados de consulta sin emitir conclusiones fiscales.
+- [x] Añadir un enlace visible hacia `#errores-cfdi` y verificarlo en la interfaz.
+- [ ] Verificar la configuración de cuenta, proyecto y variables necesarias para el destino Vercel.
+- [x] Preparar una configuración de despliegue compatible con Vercel y documentar los límites de alojamiento externo.
+- [ ] Ejecutar pruebas y preparar un punto de control de la guía y la configuración de conexión.
+- [x] Coordinar revisiones independientes de arquitectura, estructura de archivos, dependencias, GitHub Actions y despliegue Vercel.
+- [x] Catalogar los archivos versionables, generados y locales; reforzar `.gitignore` sin ocultar código o documentación necesarios.
+- [x] Organizar la raíz del repositorio con documentación de producto, desarrollo, privacidad y despliegue.
+- [ ] Verificar que las dependencias y los comandos de instalación, prueba, tipado y compilación estén documentados y reproducibles.
+- [ ] Crear un repositorio GitHub dedicado para la aplicación y subir la estructura organizada.
+- [ ] Vincular el nuevo repositorio al equipo de Vercel seleccionado y validar un despliegue de vista previa.
+- [ ] Crear o inspeccionar el proyecto real de Vercel para esta aplicación y verificar su configuración efectiva y variables requeridas.
+- [ ] Mover los ajustes de `pnpm` a una configuración soportada y confirmar una instalación bloqueada sin advertencias de configuración ignorada.
+- [ ] Documentar qué variables de entorno son obligatorias, opcionales o no aplican al flujo público desplegado.
