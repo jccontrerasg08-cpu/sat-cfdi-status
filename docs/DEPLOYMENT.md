@@ -33,3 +33,10 @@ Si en el futuro se habilita autenticación, archivos remotos o una base de datos
 La publicación canónica está disponible en [sat-cfdi-status-mx.vercel.app](https://sat-cfdi-status-mx.vercel.app) y el proyecto Vercel `sat-cfdi-status-mx` está conectado al repositorio `jccontrerasg08-cpu/sat-cfdi-status`. La configuración del proyecto no contiene variables de entorno, lo cual coincide con el flujo público actual sin secretos ni persistencia.
 
 El flujo `Validate` de GitHub Actions está correctamente detectado, pero GitHub no inició el runner porque la cuenta reportó pagos recientes fallidos o un límite de gasto que requiere ajuste. Este bloqueo proviene de la cuenta de GitHub, no de la configuración o la compilación del repositorio; la aplicación sigue desplegada en Vercel desde la rama `main`.
+
+| Entorno | Fuente | URL verificada | Estado |
+|---|---|---|---|
+| Production | `main` | [sat-cfdi-status-mx.vercel.app](https://sat-cfdi-status-mx.vercel.app) | Ready |
+| Preview | `preview/vercel-verification` | [sat-cfdi-status-ai2shnmmp-j-4933.vercel.app](https://sat-cfdi-status-ai2shnmmp-j-4933.vercel.app) | Ready |
+
+La rama Preview sólo comprueba el flujo de Vercel con un commit vacío y no altera el comportamiento de Production. Puede eliminarse cuando deje de ser útil.
