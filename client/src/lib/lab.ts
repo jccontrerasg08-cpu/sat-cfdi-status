@@ -15,6 +15,13 @@ export const LAB_CATALOG = {
   ruleCodes: ["xml_parse_error", "unexpected_root", "required_attribute_missing", "fecha_invalid", "fecha_inconsistent", "uuid_missing", "unsupported_complement", "ledger_account_missing_field", "ledger_account_duplicate", "ledger_amount_invalid", "ledger_balance_inconsistent", "journal_entry_missing_line", "journal_amount_invalid", "journal_entry_unbalanced", "trade_shipment_missing_line", "trade_line_missing_field", "trade_line_amount_invalid", "trade_declared_total_invalid", "trade_declared_total_inconsistent"],
 } as const;
 
+export const PUBLIC_CFDI_EXAMPLE = {
+  title: "CFDI 4.0 mínimo de FirmaSAT",
+  url: "https://cryptosys.net/firmasat/cfdv40-min.xml.html",
+  verifiedAt: "2026-08-22",
+  note: "Ejemplo demostrativo con valores sintéticos; se verificó contra el perfil XSD local y no se incorpora como fixture del producto.",
+} as const;
+
 const requiredComprobante = ["Version", "Fecha", "SubTotal", "Total", "Moneda", "TipoDeComprobante", "Exportacion", "MetodoPago", "FormaPago", "LugarExpedicion"];
 const issue = (code: string, rule: string, message: string, fragment: string): LabIssue => ({ code, rule, message, fragment });
 const name = (element: XmlElement) => element.localName || element.tagName.split("}").pop() || element.tagName;
@@ -94,6 +101,12 @@ export function validateLabXml(xml: string) {
   if (xml.length > 2_000_000) throw new Error("El XML supera el tamaño permitido para la lectura local.");
   const document = new DOMParser().parseFromString(xml, "application/xml"); if (document.querySelector("parsererror")) throw new Error("El archivo no contiene un XML válido.");
   return validateLabElements(document.documentElement);
+}
+
+export function normalizeXml(xml: string) {
+  const document = new DOMParser().parseFromString(xml, "application/xml");
+  if (document.querySelector("parsererror")) throw new Error("El XML no puede normalizarse porque no es válido.");
+  return new XMLSerializer().serializeToString(document);
 }
 
 export async function validateCfdi40Xsd(xml: string) {

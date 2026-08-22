@@ -59,3 +59,18 @@
 - [x] Conservar los artefactos de evaluación de dependencias y fixtures sintéticos auxiliares dentro del archivo documental del laboratorio.
 - [x] Documentar los comandos reproducibles del producto y del laboratorio, así como las rutas públicas migradas.
 - [x] Documentar la paridad cubierta por lab.test.ts, lab.xsd.test.ts, los fixtures y el perfil XSD offline.
+- [x] Auditar y corregir la ortografía, acentuación y consistencia del texto visible en la aplicación y el Laboratorio.
+- [x] Investigar ejemplos públicos o demostrativos de CFDI 4.0, revisar su licencia, anonimización y aptitud para validación local.
+- [x] Incorporar al Laboratorio ejemplos seguros de CFDI 4.0 y documentar su procedencia y límites.
+- [x] Añadir un editor XML local con carga, pegado, formato, validación educativa y perfil XSD sin enviar contenido al servidor.
+- [x] Añadir pruebas de editor, ejemplos y mensajes de error, y verificar escritorio, móvil, tipos, pruebas y compilación.
+- [x] Aplicar y verificar las correcciones lingüísticas pendientes en Home.tsx y el resto del texto visible auditado.
+- [x] Confirmar permiso de uso de ejemplos externos o sustituirlos por fixtures propios con procedencia demostrativa explícita.
+- [x] Añadir ejemplos demostrativos propios y seleccionables al editor XML con su procedencia y límites visibles.
+- [x] Ampliar pruebas del flujo de editor para carga, normalización, éxito y error de XML inválido.
+- [x] Añadir una prueba de integración de la página Laboratorio que cubra los controles del editor y los fixtures seleccionables.
+- [x] Automatizar interacciones de selección de fixture, carga de archivo, normalización y validación con mensajes visibles en el editor.
+- [x] Repetir tipos, pruebas y compilación después de la corrección final del contenido y del editor.
+- [x] Afirmar los estados visibles de éxito para fixture válido y error XSD para fixture inválido dentro de la prueba de integración del editor.
+- [x] Completar una reauditoría final del copy visible y documentar que las variantes «solo/sólo» restantes son usos ortográficamente válidos o corregirlas por consistencia.
+- [x] Guardar una nota editorial versionada con el resultado de la reauditoría final de copy.

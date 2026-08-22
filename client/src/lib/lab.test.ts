@@ -1,5 +1,5 @@
-import { describe, expect, it } from "vitest";
-import { syntheticCustomsQuote, validateLabElements } from "./lab";
+import { describe, expect, it, vi } from "vitest";
+import { normalizeXml, PUBLIC_CFDI_EXAMPLE, syntheticCustomsQuote, validateLabElements } from "./lab";
 
 const node = (localName: string, attributes: Record<string, string> = {}, children: ReturnType<typeof node>[] = []) => ({ localName, tagName: localName, getAttribute: (key: string) => attributes[key] ?? null, children });
 
@@ -20,5 +20,21 @@ describe("laboratorio educativo migrado", () => {
 
   it("mantiene el contrato de la cotización aduanera sintética", () => {
     expect(syntheticCustomsQuote("100", "20")).toMatchObject({ customsValue: "2000.00", totalContributions: "628.56", breakdown: { dta: "16.00", iva: "322.56", prv: "290.00" } });
+  });
+
+  it("normaliza únicamente XML válido y conserva la fuente pública como referencia externa", () => {
+    class Parser { parseFromString() { return { querySelector: () => null }; } }
+    class Serializer { serializeToString() { return "<cfdi:Comprobante/>"; } }
+    vi.stubGlobal("DOMParser", Parser); vi.stubGlobal("XMLSerializer", Serializer);
+    expect(normalizeXml("<cfdi:Comprobante/>")).toBe("<cfdi:Comprobante/>");
+    expect(PUBLIC_CFDI_EXAMPLE.url).toMatch(/^https:\/\//);
+    vi.unstubAllGlobals();
+  });
+
+  it("rechaza XML malformado antes de intentar normalizarlo", () => {
+    class Parser { parseFromString() { return { querySelector: () => ({}) }; } }
+    vi.stubGlobal("DOMParser", Parser);
+    expect(() => normalizeXml("<Comprobante>")).toThrow("El XML no puede normalizarse porque no es válido.");
+    vi.unstubAllGlobals();
   });
 });

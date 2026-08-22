@@ -2,7 +2,7 @@
 
 > Herramienta pública para consultar **un CFDI a la vez** en el servicio ConsultaCFDI del SAT. No pide cuenta ni recibe XML en el servidor; el archivo se lee exclusivamente en el navegador.
 
-> **Repositorio canónico de producto.** Este es el único repositorio destinado a GitHub, Vercel y uso público. El material de fixtures y reglas didácticas permanece separado en [CFDI Fixture Lab](https://github.com/jccontrerasg08-cpu/cfdi-fixture-lab); no se ejecuta ni se despliega junto con esta aplicación.
+> **Repositorio canónico de producto.** Este es el único repositorio destinado a GitHub, Vercel y uso público. El material de fixtures y reglas didácticas vive en `lab/` y `docs/lab/`, separado de la consulta operativa dentro de esta misma aplicación.
 
 ## Desarrollo
 
@@ -29,7 +29,7 @@ Abre la página pública y captura los cinco datos del comprobante, o selecciona
 | RFC receptor | `rr` | RFC de 12 o 13 caracteres. |
 | Total | `tt` | Decimal positivo, sin separador de miles. |
 | UUID | `id` | Folio fiscal UUID completo. |
-| Últimos ocho del sello | `fe` | Exactamente ocho caracteres, sin espacios. |
+| Últimos ocho caracteres del sello | `fe` | Exactamente ocho caracteres, sin espacios. |
 
 La expresión se construye como `?re=...&rr=...&tt=...&id=...&fe=...`. Esta forma se envía dentro del elemento `expresionImpresa` de la operación SOAP `Consulta`.
 
@@ -47,7 +47,7 @@ Después de un Acuse exitoso, la aplicación puede conservar hasta ocho consulta
 
 ## Errores típicos de CFDI
 
-La interfaz incluye una guía de lectura para los casos más frecuentes: XML que no puede interpretarse, ausencia de `TimbreFiscalDigital` o UUID, RFC/total con formato inválido, falta del atributo `Sello` y fallos temporales de red, HTTP o SOAP. Cada caso diferencia la señal observada de una acción de lectura prudente. Esta guía no certifica la validez fiscal del comprobante ni reemplaza una revisión profesional.
+La interfaz incluye una guía de lectura para los casos más frecuentes: XML que no puede interpretarse, ausencia de `TimbreFiscalDigital` o UUID, RFC o total con formato inválido, falta del atributo `Sello` y fallos temporales de red, HTTP o SOAP. Cada caso diferencia la señal observada de una acción de lectura prudente. Esta guía no certifica la validez fiscal del comprobante ni reemplaza una revisión profesional.
 
 ## Límites
 
