@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import { normalizeXml, PUBLIC_CFDI_EXAMPLE, validateLabElements } from "./lab";
+import { labReportCsv, mergeLabHistory, normalizeXml, PUBLIC_CFDI_EXAMPLE, readLabHistory, validateLabElements } from "./lab";
 import { syntheticCustomsQuote } from "./customsQuote";
 
 const node = (localName: string, attributes: Record<string, string> = {}, children: ReturnType<typeof node>[] = []) => ({ localName, tagName: localName, getAttribute: (key: string) => attributes[key] ?? null, children });
@@ -37,5 +37,11 @@ describe("laboratorio educativo migrado", () => {
     vi.stubGlobal("DOMParser", Parser);
     expect(() => normalizeXml("<Comprobante>")).toThrow("El XML no puede normalizarse porque no es válido.");
     vi.unstubAllGlobals();
+  });
+
+  it("conserva resultados locales sin XML y genera CSV escapado", () => {
+    const entry = { id: "one", savedAt: 1, root: "Comprobante", issueCount: 0, xsd: "valid" as const, source: "editor" as const, issues: [], xsdErrors: [] };
+    expect(readLabHistory(JSON.stringify(mergeLabHistory([], entry)))).toEqual([entry]);
+    expect(labReportCsv(entry, { root: "Comprobante", issues: [] }, { valid: true, errors: [] })).toContain('"Sin observaciones didácticas"');
   });
 });

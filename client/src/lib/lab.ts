@@ -4,6 +4,10 @@ import typesSchema from "../../../lab/schemas/cfdi40/tdCFDI.xsd?raw";
 
 export type LabIssue = { code: string; rule: string; message: string; fragment: string };
 export type LabReport = { root: string; issues: LabIssue[] };
+export type LabHistoryEntry = { id: string; savedAt: number; root: string; issueCount: number; xsd: "valid" | "invalid" | "not_run"; source: "editor" | "archivo" | "fixture"; issues: LabIssue[]; xsdErrors: { message: string; line: number | null }[] };
+export const LAB_HISTORY_KEY = "consulta-cfdi.lab-history.v1";
+export const LAB_HISTORY_PREFERENCE_KEY = "consulta-cfdi.lab-history-enabled.v1";
+const LAB_HISTORY_LIMIT = 10;
 
 type XmlElement = Pick<Element, "localName" | "tagName" | "getAttribute" | "children">;
 type Decimal = { units: bigint; scale: number };
@@ -96,6 +100,28 @@ export function normalizeXml(xml: string) {
   const document = new DOMParser().parseFromString(xml, "application/xml");
   if (document.querySelector("parsererror")) throw new Error("El XML no puede normalizarse porque no es válido.");
   return new XMLSerializer().serializeToString(document);
+}
+
+export function readLabHistory(raw: string | null): LabHistoryEntry[] {
+  if (!raw) return [];
+  try {
+    const entries = JSON.parse(raw);
+    return Array.isArray(entries) ? entries.filter(entry => entry && typeof entry.id === "string" && typeof entry.savedAt === "number" && typeof entry.root === "string" && typeof entry.issueCount === "number" && ["valid", "invalid", "not_run"].includes(entry.xsd) && ["editor", "archivo", "fixture"].includes(entry.source)).map(entry => ({ ...entry, issues: Array.isArray(entry.issues) ? entry.issues : [], xsdErrors: Array.isArray(entry.xsdErrors) ? entry.xsdErrors : [] })).slice(0, LAB_HISTORY_LIMIT) : [];
+  } catch { return []; }
+}
+
+export function mergeLabHistory(entries: LabHistoryEntry[], entry: LabHistoryEntry) {
+  return [entry, ...entries].slice(0, LAB_HISTORY_LIMIT);
+}
+
+export function labReportCsv(entry: LabHistoryEntry, report: LabReport, xsd: { valid: boolean; errors: { message: string; line: number | null }[] } | null) {
+  const quote = (value: string | number | null) => `"${String(value ?? "").replace(/"/g, '""')}"`;
+  const rows = [["validado_en", "raiz", "origen", "observaciones_didacticas", "xsd", "linea", "detalle"]];
+  const timestamp = new Date(entry.savedAt).toISOString();
+  report.issues.forEach(issue => rows.push([timestamp, report.root, entry.source, `${issue.code}: ${issue.message}`, entry.xsd, "", issue.fragment]));
+  if (!report.issues.length) rows.push([timestamp, report.root, entry.source, "Sin observaciones didácticas", entry.xsd, "", ""]);
+  xsd?.errors.forEach(error => rows.push([timestamp, report.root, entry.source, "", "invalid", error.line === null ? "" : String(error.line), error.message]));
+  return rows.map(row => row.map(quote).join(",")).join("\n");
 }
 
 export async function validateCfdi40Xsd(xml: string) {

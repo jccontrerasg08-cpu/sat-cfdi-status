@@ -109,3 +109,12 @@
 - [x] Repetir la auditoría de producción y documentar cualquier riesgo residual que no pueda corregirse sin una decisión de arquitectura.
 - [x] Corregir el patrón de ruta heredado incompatible con Express 5 y verificar el servidor de desarrollo y las rutas SPA.
 - [x] Publicar un informe versionado de la auditoría senior con alcance, roles, decisiones, verificaciones y límites residuales.
+- [x] Exportar localmente el resultado de validación XML en CSV y PDF imprimible, sin incluir el XML completo.
+- [x] Guardar un historial acotado de validaciones XML sólo tras consentimiento, con reapertura y borrado local.
+- [x] Mejorar los estados de carga, éxito y error durante la validación XML con mensajes claros y accesibles.
+- [x] Añadir pruebas de exportación, historial y estados de validación, y comprobar escritorio y móvil antes de publicar.
+- [x] Permitir reabrir localmente los detalles de una validación histórica sin persistir el XML original.
+- [x] Cubrir en la interfaz el consentimiento, guardado y reapertura del historial XML sin almacenar el contenido del archivo.
+- [x] Probar el flujo de exportación PDF con una ventana de impresión simulada y comprobar que no incluye XML.
+- [x] Verificar los controles CSV y PDF mediante la integración del fixture válido y la prueba de exportación local.
+- [x] Probar la presencia y activación del botón CSV tras validar un fixture, además del flujo PDF ya cubierto.
