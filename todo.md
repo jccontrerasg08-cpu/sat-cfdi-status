@@ -94,15 +94,15 @@
 - [x] Auditar código, arquitectura, seguridad, rendimiento, pruebas, accesibilidad y mantenibilidad a nivel macro y micro.
 - [x] Revisar el repositorio GitHub como persona externa: README, navegación, licencias, documentación, contribución y presentación open source.
 - [x] Reproducir y corregir sólo hallazgos de alta confianza, con pruebas o evidencia de despliegue.
-- [ ] Verificar el repositorio y el sitio publicados antes de entregar el informe integral.
-- [ ] Confirmar que GitHub muestra el repositorio público y el enlace canónico de producción.
+- [x] Verificar el repositorio y el sitio publicados antes de entregar el informe integral.
+- [x] Confirmar que GitHub muestra el repositorio público y el enlace canónico de producción.
 - [x] Corregir el zoom móvil, el enlace de salto y las páginas de error para mantener accesibilidad y consistencia visual.
 - [x] Convertir el historial local de consultas en una función con consentimiento explícito, conservando el borrado local.
 - [x] Eliminar archivos y dependencias de plantilla no utilizados, y sincronizar la arquitectura con los puntos de entrada reales.
 - [x] Mejorar la salud del proyecto open source con política de seguridad, conducta, plantillas de contribución y documentación coherente.
-- [ ] Verificar las rutas profundas publicadas y la presentación de GitHub después de las correcciones.
-- [ ] Configurar una regla de fallback SPA en Vercel y comprobar directamente `/laboratorio` y `/laboratorio/cotizador` como visitante externo.
-- [ ] Comprobar como visitante externo la URL canónica visible en GitHub y ambas rutas profundas una vez publicado el cambio actual.
+- [x] Verificar las rutas profundas publicadas y la presentación de GitHub después de las correcciones.
+- [x] Configurar una regla de fallback SPA en Vercel y comprobar directamente `/laboratorio` y `/laboratorio/cotizador` como visitante externo.
+- [x] Comprobar como visitante externo la URL canónica visible en GitHub y ambas rutas profundas una vez publicado el cambio actual.
 - [x] Eliminar los consumidores residuales de Google Maps y Drizzle detectados por el chequeo de tipos tras la limpieza de plantilla.
 - [x] Añadir un límite de tasa mínimo y probado al endpoint público de consulta, documentando su alcance por instancia serverless.
 - [x] Eliminar dependencias sin consumidores que arrastran vulnerabilidades y actualizar Express, tRPC y Nano ID a versiones corregidas compatibles.
