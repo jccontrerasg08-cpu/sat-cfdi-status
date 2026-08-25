@@ -8,12 +8,12 @@ La aplicación se organiza como un producto público de consulta individual de C
 | `server/app.ts` | Aplicación Express pública y middleware tRPC. | Sí |
 | `server/satStatus.ts` | Validación, sobre SOAP y lectura minimizada del Acuse. | Sí |
 | `api/[...path].ts` | Adaptador serverless para Vercel. | Sí |
-| `server/_core/` | Utilidades de ejecución local conservadas por la plantilla. | Sí; no es parte de la consulta pública. |
+| `server/_core/` | Arranque Express, Vite local y contexto tRPC mínimos. | Sí; participa en la ejecución local y de producción. |
 | `docs/` | Guías de arquitectura y despliegue. | Sí |
-| `drizzle/` | Esquema heredado de plantilla; no participa en la consulta pública. | Sí |
+| `lab/` | Fixtures sintéticos, XSD y artefactos educativos usados sólo por el Laboratorio local. | Sí |
 | `.manus*`, `.vercel/`, `dist/`, `node_modules/`, `.env*` | Estado local, artefactos o secretos. | No |
 
-El repositorio [CFDI Fixture Lab](https://github.com/jccontrerasg08-cpu/cfdi-fixture-lab) permanece como referencia educativa de fixtures sintéticos y reglas locales. No forma parte de la compilación, las dependencias, GitHub Actions ni el despliegue Vercel de este producto.
+Los fixtures, XSD y reglas educativas ya se conservaron en `lab/` y se describen en `docs/LABORATORY.md`; no intervienen en la consulta operativa ni se envían al SAT.
 
 ## Flujo público
 

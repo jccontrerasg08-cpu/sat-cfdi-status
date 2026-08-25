@@ -2,6 +2,8 @@
 
 > Herramienta pública para consultar **un CFDI a la vez** en el servicio ConsultaCFDI del SAT. No pide cuenta ni recibe XML en el servidor; el archivo se lee exclusivamente en el navegador.
 
+**Aplicación pública:** [sat-cfdi-status-mx.vercel.app](https://sat-cfdi-status-mx.vercel.app) · **Licencia:** [MIT](LICENSE) · **Seguridad:** [SECURITY.md](SECURITY.md) · **Contribución:** [CONTRIBUTING.md](CONTRIBUTING.md)
+
 > **Repositorio canónico de producto.** Este es el único repositorio destinado a GitHub, Vercel y uso público. El material de fixtures y reglas didácticas vive en `lab/` y `docs/lab/`, separado de la consulta operativa dentro de esta misma aplicación.
 
 ## Desarrollo
@@ -17,7 +19,7 @@ La organización del código se explica en [Arquitectura](docs/ARCHITECTURE.md).
 
 ## Repositorio
 
-El repositorio incluye [Contribuir](CONTRIBUTING.md), una licencia [MIT](LICENSE), una política de archivos locales en `.gitignore` y un flujo de validación en `.github/workflows/ci.yml`. El directorio `docs/` concentra la arquitectura y el despliegue para que el código de producto permanezca en `client/`, `server/` y `api/`.
+El repositorio incluye [Contribuir](CONTRIBUTING.md), [Código de conducta](CODE_OF_CONDUCT.md), [Política de seguridad](SECURITY.md), una licencia [MIT](LICENSE), una política de archivos locales en `.gitignore` y un flujo de validación en `.github/workflows/ci.yml`. El directorio `docs/` concentra la arquitectura, el despliegue y la [auditoría](docs/AUDIT.md) para que el código de producto permanezca en `client/`, `server/` y `api/`.
 
 ## Uso
 
@@ -43,7 +45,7 @@ El servicio devuelve un `Acuse`. La interfaz presenta sus campos sin reinterpret
 
 El XML se abre mediante APIs nativas del navegador para leer RFC, total, UUID y los ocho últimos caracteres del sello. El archivo no se transmite ni se almacena. Desde los datos extraídos, la página produce una vista previa HTML semántica que puede imprimirse o guardarse como PDF con el diálogo estándar del navegador.
 
-Después de un Acuse exitoso, la aplicación puede conservar hasta ocho consultas recientes en `localStorage` del navegador actual. Ese historial contiene datos de consulta y respuesta; no incluye el archivo XML y puede eliminarse con un solo control desde la interfaz.
+Después de un Acuse exitoso, la aplicación solicita consentimiento antes de conservar hasta ocho consultas recientes en `localStorage` del navegador actual. Ese historial contiene datos de consulta y respuesta; no incluye el archivo XML y puede eliminarse con un solo control desde la interfaz.
 
 ## Errores típicos de CFDI
 

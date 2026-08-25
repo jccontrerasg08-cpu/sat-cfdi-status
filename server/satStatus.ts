@@ -53,6 +53,8 @@ function decodeXml(value: string) {
   return value.replace(/&(amp|lt|gt|quot|apos);/g, (_match, entity: string) => ({ amp: "&", lt: "<", gt: ">", quot: '"', apos: "'" })[entity]!);
 }
 
+// ponytail: El Acuse es un contrato pequeño y sólo se extraen cinco campos.
+// Si SAT introduce anidación o formatos variables, sustituir por un parser XML endurecido.
 function elementText(xml: string, field: string) {
   const match = xml.match(new RegExp(`<(?:(?:[\\w-]+):)?${field}\\b[^>]*>([\\s\\S]*?)</(?:(?:[\\w-]+):)?${field}>`, "i"));
   return match ? decodeXml(match[1].replace(/<[^>]+>/g, "").trim()) : null;

@@ -28,6 +28,7 @@ export type CfdiHistoryEntry = {
 type XmlElement = Pick<Element, "localName" | "getAttribute">;
 
 export const CFDI_HISTORY_KEY = "consulta-cfdi.history.v1";
+export const CFDI_HISTORY_PREFERENCE_KEY = "consulta-cfdi.history-enabled.v1";
 const HISTORY_LIMIT = 8;
 
 const textAttribute = (element: XmlElement | undefined, attribute: string) => element?.getAttribute(attribute)?.trim() || null;

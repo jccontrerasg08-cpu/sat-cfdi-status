@@ -1,10 +1,7 @@
-import { Toaster } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
 import { lazy, Suspense } from "react";
 import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
-import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 
 const Lab = lazy(() => import("./pages/Lab"));
@@ -34,15 +31,8 @@ function Router() {
 function App() {
   return (
     <ErrorBoundary>
-      <ThemeProvider
-        defaultTheme="light"
-        // switchable
-      >
-        <TooltipProvider>
-          <Toaster />
-          <Router />
-        </TooltipProvider>
-      </ThemeProvider>
+      <a href="#contenido-principal" className="sr-only fixed left-4 top-4 z-50 rounded-full bg-[#171611] px-4 py-2 text-sm font-semibold text-[#fffdf8] focus:not-sr-only">Saltar al contenido</a>
+      <Router />
     </ErrorBoundary>
   );
 }

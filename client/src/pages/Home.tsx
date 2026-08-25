@@ -1,5 +1,6 @@
 import {
   CFDI_HISTORY_KEY,
+  CFDI_HISTORY_PREFERENCE_KEY,
   extractCfdiXml,
   mergeHistory,
   readHistory,
@@ -79,11 +80,13 @@ export default function Home() {
   const fileInput = useRef<HTMLInputElement>(null);
   const submittedQuery = useRef<FormValues | null>(null);
   const submittedPreview = useRef<CfdiPreview | null>(null);
+  const historyEnabled = useRef(false);
   const status = trpc.satStatus.query.useMutation();
 
   useEffect(() => {
     try {
-      setHistory(readHistory(window.localStorage.getItem(CFDI_HISTORY_KEY)));
+      historyEnabled.current = window.localStorage.getItem(CFDI_HISTORY_PREFERENCE_KEY) === "true";
+      setHistory(historyEnabled.current ? readHistory(window.localStorage.getItem(CFDI_HISTORY_KEY)) : []);
     } catch {
       setHistory([]);
     }
@@ -91,6 +94,12 @@ export default function Home() {
 
   useEffect(() => {
     if (!status.data?.ok || !submittedQuery.current) return;
+    if (!historyEnabled.current) {
+      const accepted = window.confirm("¿Quieres guardar esta consulta en este navegador? Se conservarán RFC, UUID, total y Acuse hasta que los borres.");
+      if (!accepted) return;
+      historyEnabled.current = true;
+      try { window.localStorage.setItem(CFDI_HISTORY_PREFERENCE_KEY, "true"); } catch { /* Storage can be unavailable in private contexts. */ }
+    }
     const entry: CfdiHistoryEntry = {
       id: `${submittedQuery.current.uuid}:${Date.now()}`,
       savedAt: Date.now(),
@@ -156,7 +165,11 @@ export default function Home() {
 
   const clearHistory = () => {
     setHistory([]);
-    try { window.localStorage.removeItem(CFDI_HISTORY_KEY); } catch { /* Storage can be unavailable in private contexts. */ }
+    historyEnabled.current = false;
+    try {
+      window.localStorage.removeItem(CFDI_HISTORY_KEY);
+      window.localStorage.removeItem(CFDI_HISTORY_PREFERENCE_KEY);
+    } catch { /* Storage can be unavailable in private contexts. */ }
   };
 
   const reset = () => {
@@ -187,7 +200,7 @@ export default function Home() {
         <nav className="hidden items-center gap-5 text-sm font-medium text-[#595649] sm:flex" aria-label="Secciones de la página"><a href="/laboratorio" className="transition-colors hover:text-[#b76421]">Laboratorio</a><a href="#errores-cfdi" className="transition-colors hover:text-[#b76421]">Errores frecuentes</a><a href="#como-funciona" className="inline-flex items-center gap-2 transition-colors hover:text-[#171611]">Cómo funciona <ArrowDown size={15} /></a></nav>
       </header>
 
-      <main className="relative z-10 mx-auto w-full max-w-[1340px] px-5 pb-20 sm:px-8 lg:px-12">
+      <main id="contenido-principal" tabIndex={-1} className="relative z-10 mx-auto w-full max-w-[1340px] px-5 pb-20 sm:px-8 lg:px-12">
         <section className="screen-only grid gap-10 pb-14 pt-6 lg:grid-cols-[minmax(0,0.92fr)_minmax(560px,1.08fr)] lg:items-end lg:gap-16 lg:pb-20 lg:pt-16">
           <div className="max-w-xl"><div className="eyebrow"><span className="pulse-dot" /> Consulta individual · SAT</div><h1 className="mt-5 font-[var(--font-display)] text-[clamp(3.15rem,7vw,6.8rem)] leading-[0.88] tracking-[-0.06em] text-[#171611]">Una factura.<br /><em className="font-normal text-[#b76421]">Una respuesta</em><br />oficial.</h1><p className="mt-7 max-w-md text-base leading-7 text-[#595649] sm:text-lg">Carga un XML local o captura los datos. La factura nunca llega al servidor; solo la expresión impresa viaja al SAT.</p><div className="mt-9 flex flex-wrap gap-x-6 gap-y-3 text-sm font-medium text-[#49463d]"><span className="inline-flex items-center gap-2"><ShieldCheck size={17} className="text-[#26775a]" /> Sin credenciales</span><span className="inline-flex items-center gap-2"><LockKeyhole size={17} className="text-[#26775a]" /> XML local</span><span className="inline-flex items-center gap-2"><Network size={17} className="text-[#26775a]" /> Servicio público SAT</span></div></div>
 
