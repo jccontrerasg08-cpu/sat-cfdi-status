@@ -17,6 +17,21 @@ describe("ConsultaCFDI SAT", () => {
     expect(buildSoapBody(buildPrintedExpression(input))).toContain("<expresionImpresa>?re=AAA010101AAA&amp;rr=XAXX010101000&amp;tt=100.00&amp;id=123E4567-E89B-12D3-A456-426614174000&amp;fe=ABC12345</expresionImpresa>");
   });
 
+  it("conserva el total decimal normalizado y acepta prefijos de namespace distintos", async () => {
+    const input = satStatusInput.parse({ ...validInput, total: " 100.500 " });
+    expect(buildPrintedExpression(input)).toContain("tt=100.500");
+
+    vi.stubGlobal("fetch", vi.fn().mockResolvedValue(new Response(`<?xml version="1.0"?><env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"><env:Body><r:ConsultaResponse xmlns:r="http://tempuri.org/"><q:ConsultaResult xmlns:q="urn:acuse"><q:CodigoEstatus>S - Comprobante obtenido satisfactoriamente.</q:CodigoEstatus></q:ConsultaResult></r:ConsultaResponse></env:Body></env:Envelope>`, { status: 200 })));
+    await expect(querySatStatus(input)).resolves.toMatchObject({ ok: true, acuse: { CodigoEstatus: "S - Comprobante obtenido satisfactoriamente." } });
+    vi.unstubAllGlobals();
+  });
+
+  it("devuelve error de red cuando el timeout del transporte aborta la consulta", async () => {
+    vi.stubGlobal("fetch", vi.fn().mockRejectedValue(new DOMException("The operation timed out.", "TimeoutError")));
+    await expect(querySatStatus(satStatusInput.parse(validInput))).resolves.toEqual({ ok: false, code: "network_error" });
+    vi.unstubAllGlobals();
+  });
+
   it("rechaza una entrada inválida antes de crear una petición", () => {
     expect(satStatusInput.safeParse({ ...validInput, uuid: "no-es-uuid" }).success).toBe(false);
     expect(satStatusInput.safeParse({ ...validInput, sealLast8: "corto" }).success).toBe(false);
