@@ -118,3 +118,7 @@
 - [x] Probar el flujo de exportación PDF con una ventana de impresión simulada y comprobar que no incluye XML.
 - [x] Verificar los controles CSV y PDF mediante la integración del fixture válido y la prueba de exportación local.
 - [x] Probar la presencia y activación del botón CSV tras validar un fixture, además del flujo PDF ya cubierto.
+- [x] Auditar la portada pública, los metadatos y los enlaces de GitHub frente al estado real de la aplicación.
+- [x] Normalizar README, enlaces de documentación, comunidad, privacidad y comandos para una lectura clara como visitante externo.
+- [x] Actualizar los metadatos del repositorio para reflejar la URL canónica, el propósito, los temas y la licencia reales.
+- [ ] Verificar en GitHub la navegación, la presentación y la coherencia con el despliegue antes de publicar.

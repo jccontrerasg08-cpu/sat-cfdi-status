@@ -1,60 +1,67 @@
 # Consulta CFDI SAT
 
-> Herramienta pública para consultar **un CFDI a la vez** en el servicio ConsultaCFDI del SAT. No pide cuenta ni recibe XML en el servidor; el archivo se lee exclusivamente en el navegador.
+> Consulta pública e individual del estatus de un CFDI ante el SAT, con un Laboratorio XML local para aprendizaje y validación estructural. La aplicación no requiere cuenta y no recibe archivos XML en el servidor.
 
-**Aplicación pública:** [sat-cfdi-status-mx.vercel.app](https://sat-cfdi-status-mx.vercel.app) · **Licencia:** [MIT](LICENSE) · **Seguridad:** [SECURITY.md](SECURITY.md) · **Contribución:** [CONTRIBUTING.md](CONTRIBUTING.md)
+[Abrir la aplicación](https://sat-cfdi-status-mx.vercel.app) · [Documentación](docs/README.md) · [Contribuir](CONTRIBUTING.md) · [Seguridad](SECURITY.md) · [Código de conducta](CODE_OF_CONDUCT.md) · [MIT](LICENSE)
 
-> **Repositorio canónico de producto.** Este es el único repositorio destinado a GitHub, Vercel y uso público. El material de fixtures y reglas didácticas vive en `lab/` y `docs/lab/`, separado de la consulta operativa dentro de esta misma aplicación.
+## Qué resuelve
 
-## Desarrollo
+| Superficie | Uso | Privacidad y alcance |
+| --- | --- | --- |
+| **Consulta SAT** | Consulta un CFDI con RFC emisor, RFC receptor, total, UUID y los últimos ocho caracteres del sello. | Envía una única expresión impresa al servicio público del SAT; no persiste identificadores. |
+| **Lectura local de XML** | Extrae los datos necesarios desde un XML CFDI en el navegador. | El archivo no se transmite ni se guarda. |
+| **Laboratorio XML** | Edita, normaliza y valida fixtures y XML con reglas didácticas y el perfil XSD CFDI 4.0. | Es educativo: no certifica sellos, PAC, catálogos ni cumplimiento fiscal. |
+| **Resultados locales** | Exporta validaciones del Laboratorio en CSV o mediante el diálogo de impresión para PDF. | El historial es opcional, queda en el navegador y nunca conserva el XML. |
 
-| Comando | Propósito |
-|---|---|
-| `pnpm dev` | Inicia la aplicación local. |
-| `pnpm check` | Comprueba los tipos de TypeScript. |
-| `pnpm test` | Ejecuta los contratos del SAT y la lectura local de XML. |
-| `pnpm build` | Genera el cliente Vite y el servidor Node. |
+## Inicio rápido
 
-La organización del código se explica en [Arquitectura](docs/ARCHITECTURE.md). Para GitHub Actions y Vercel, consulta [Despliegue](docs/DEPLOYMENT.md).
+```bash
+pnpm install --frozen-lockfile
+pnpm dev
+```
 
-## Repositorio
+Abre la URL local indicada por el servidor. Antes de enviar un cambio, ejecuta:
 
-El repositorio incluye [Contribuir](CONTRIBUTING.md), [Código de conducta](CODE_OF_CONDUCT.md), [Política de seguridad](SECURITY.md), una licencia [MIT](LICENSE), una política de archivos locales en `.gitignore` y un flujo de validación en `.github/workflows/ci.yml`. El directorio `docs/` concentra la arquitectura, el despliegue y la [auditoría](docs/AUDIT.md) para que el código de producto permanezca en `client/`, `server/` y `api/`.
+```bash
+pnpm check
+pnpm test
+pnpm build
+```
 
-## Uso
+## Uso de ConsultaCFDI
 
-Abre la página pública y captura los cinco datos del comprobante, o selecciona un XML CFDI para extraerlos localmente. La aplicación valida los campos primero en el navegador y después en el servidor. Sólo si los datos tienen formato válido, el servidor envía una solicitud SOAP única al SAT.
+La aplicación construye la expresión `?re=...&rr=...&tt=...&id=...&fe=...` y la entrega como `expresionImpresa` en la operación SOAP `Consulta`.[1]
 
-| Dato | Clave en la expresión | Formato esperado |
-|---|---|---|
+| Dato | Clave | Formato esperado |
+| --- | --- | --- |
 | RFC emisor | `re` | RFC de 12 o 13 caracteres. |
 | RFC receptor | `rr` | RFC de 12 o 13 caracteres. |
-| Total | `tt` | Decimal positivo, sin separador de miles. |
+| Total | `tt` | Decimal positivo sin separador de miles. |
 | UUID | `id` | Folio fiscal UUID completo. |
-| Últimos ocho caracteres del sello | `fe` | Exactamente ocho caracteres, sin espacios. |
+| Últimos ocho caracteres del sello | `fe` | Ocho caracteres sin espacios. |
 
-La expresión se construye como `?re=...&rr=...&tt=...&id=...&fe=...`. Esta forma se envía dentro del elemento `expresionImpresa` de la operación SOAP `Consulta`.
+El Acuse se muestra sin reinterpretación: `CodigoEstatus`, `Estado`, `EsCancelable`, `EstatusCancelacion` y `ValidacionEFOS`. Una respuesta del SAT no sustituye una conclusión fiscal, legal o de cumplimiento.
 
-## Cómo opera ConsultaCFDI
+## Arquitectura y documentación
 
-El SAT expone un endpoint HTTPS público para la operación `Consulta`. La aplicación usa `POST` con la acción SOAP `http://tempuri.org/IConsultaCFDIService/Consulta`; no usa token, certificado ni credencial. El proxy de backend existe para proteger el navegador de las restricciones de origen y para centralizar la validación, pero no tiene base de datos ni escribe registros de los identificadores enviados.
+El producto público vive en `client/`, `server/` y `api/`. Los assets educativos, XSD y fixtures residen en `lab/` y `docs/lab/`, separados de la consulta operativa. El índice completo está en [docs/README.md](docs/README.md).
 
-El servicio devuelve un `Acuse`. La interfaz presenta sus campos sin reinterpretarlos: `CodigoEstatus`, `Estado`, `EsCancelable`, `EstatusCancelacion` y `ValidacionEFOS`. Los errores de formato se detienen antes de abrir conexión; los errores de red, HTTP y SOAP se comunican sin reflejar los datos introducidos.
+| Documento | Para qué sirve |
+| --- | --- |
+| [Arquitectura](docs/ARCHITECTURE.md) | Componentes, límites de datos y rutas de ejecución. |
+| [Laboratorio](docs/LABORATORY.md) | Reglas, fixtures, XSD, editor XML y alcance educativo. |
+| [Despliegue](docs/DEPLOYMENT.md) | GitHub, Vercel, variables y rutas de validación. |
+| [Auditoría](docs/AUDIT.md) | Controles de seguridad, accesibilidad y límites de la revisión. |
+| [Revisión open source](docs/OPEN_SOURCE_REVIEW.md) | Decisiones de calidad y mantenimiento del repositorio. |
 
-## XML, historial y vista previa
+## Límites intencionales
 
-El XML se abre mediante APIs nativas del navegador para leer RFC, total, UUID y los ocho últimos caracteres del sello. El archivo no se transmite ni se almacena. Desde los datos extraídos, la página produce una vista previa HTML semántica que puede imprimirse o guardarse como PDF con el diálogo estándar del navegador.
+La herramienta realiza una consulta por solicitud. No procesa lotes, no timbra, no firma, no cancela comprobantes, no monitorea de forma continua y no ofrece asesoría fiscal. El Laboratorio usa contenido demostrativo o sintético y no reemplaza la validación oficial.
 
-Después de un Acuse exitoso, la aplicación solicita consentimiento antes de conservar hasta ocho consultas recientes en `localStorage` del navegador actual. Ese historial contiene datos de consulta y respuesta; no incluye el archivo XML y puede eliminarse con un solo control desde la interfaz.
+## Comunidad y reportes
 
-## Errores típicos de CFDI
+Las propuestas de cambio siguen [CONTRIBUTING.md](CONTRIBUTING.md). Los reportes de seguridad deben seguir el canal de [SECURITY.md](SECURITY.md); no abras datos sensibles en issues públicos.
 
-La interfaz incluye una guía de lectura para los casos más frecuentes: XML que no puede interpretarse, ausencia de `TimbreFiscalDigital` o UUID, RFC o total con formato inválido, falta del atributo `Sello` y fallos temporales de red, HTTP o SOAP. Cada caso diferencia la señal observada de una acción de lectura prudente. Esta guía no certifica la validez fiscal del comprobante ni reemplaza una revisión profesional.
+## Referencias
 
-## Límites
-
-La herramienta realiza **una consulta individual por solicitud**. No habilita lotes, monitoreo, cancelación, timbrado, firma ni asesoría fiscal. El Acuse es la respuesta del SAT y no constituye por sí mismo una conclusión fiscal, legal o de cumplimiento.
-
-## Referencia oficial
-
-Consulta el contrato publicado por el SAT en el [WSDL de ConsultaCFDI](https://consultaqr.facturaelectronica.sat.gob.mx/ConsultaCFDIService.svc). La guía oficial del servicio está disponible en [Documentación del Servicio de Consulta de CFDI](https://www.sat.gob.mx/minisitio/Factura/documentos/cancelacion/ar_consulta_cfdi.pdf).
+[1] [SAT — WSDL público de ConsultaCFDI](https://consultaqr.facturaelectronica.sat.gob.mx/ConsultaCFDIService.svc)
