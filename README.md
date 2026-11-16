@@ -40,7 +40,7 @@ La aplicación construye la expresión `?re=...&rr=...&tt=...&id=...&fe=...` y l
 | UUID | `id` | Folio fiscal UUID completo. |
 | Últimos ocho caracteres del sello | `fe` | Ocho caracteres sin espacios. |
 
-El Acuse se muestra sin reinterpretación: `CodigoEstatus`, `Estado`, `EsCancelable`, `EstatusCancelacion` y `ValidacionEFOS`. Una respuesta del SAT no sustituye una conclusión fiscal, legal o de cumplimiento.
+El Acuse se muestra sin reinterpretación: `CodigoEstatus`, `Estado`, `EsCancelable`, `EstatusCancelacion` y `ValidacionEFOS`.[2] Una respuesta del SAT no sustituye una conclusión fiscal, legal o de cumplimiento.
 
 ## Arquitectura y documentación
 
@@ -65,3 +65,5 @@ Las propuestas de cambio siguen [CONTRIBUTING.md](CONTRIBUTING.md). Los reportes
 ## Referencias
 
 [1] [SAT — WSDL público de ConsultaCFDI](https://consultaqr.facturaelectronica.sat.gob.mx/ConsultaCFDIService.svc)
+
+[2] [SAT — Documentación del Servicio de Consulta de CFDI, versión 1.4 (noviembre 2022)](http://omawww.sat.gob.mx/tramitesyservicios/Paginas/documentos/Documentacion_WS_Consulta_CFDI_v1.4.pdf)

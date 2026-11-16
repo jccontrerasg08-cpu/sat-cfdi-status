@@ -1,0 +1,24 @@
+version: 2
+updates:
+  # Minor and patch updates arrive together in one PR; majors (vitest 3, …)
+  # arrive one by one because they can break things and deserve their own
+  # review. A one-week cooldown gives the ecosystem time to catch a
+  # compromised release before it is proposed here.
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    groups:
+      minor-and-patch:
+        update-types: ["minor", "patch"]
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    groups:
+      actions:
+        patterns: ["*"]
