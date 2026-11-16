@@ -100,7 +100,7 @@ Why this next:
 
 [1] [SAT — Requisitos y obligaciones para proveedores de certificación](https://www.sat.gob.mx/minisitio/Factura/proveedores_requisitos.htm)
 
-[2] [SAT — Documentación del Servicio de Consulta de CFDI, versión 1.3](https://www.sat.gob.mx/minisitio/Factura/documentos/cancelacion/ar_consulta_cfdi.pdf)
+[2] [SAT — Documentación del Servicio de Consulta de CFDI, versión 1.4 (noviembre 2022)](http://omawww.sat.gob.mx/tramitesyservicios/Paginas/documentos/Documentacion_WS_Consulta_CFDI_v1.4.pdf)
 
 [3] [IMSS — SUA, Sistema Único de Autodeterminación](https://www.imss.gob.mx/patrones/sua)
 
